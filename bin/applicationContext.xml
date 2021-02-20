@@ -8,16 +8,21 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Define your beans here -->
-	<bean id="myFortune"
+	<bean id="myFortuneService"
 		class="com.frank.springdemo.HappyFortuneService"></bean>
 	<bean id="myCoach" class="com.frank.springdemo.BaseballCoach">
 		<!-- Set up constructor injection -->
-		<constructor-arg ref="myFortune" />
+		<constructor-arg ref="myFortuneService" />
 	</bean>
 	<bean id="volleyballCoach"
 		class="com.frank.springdemo.VolleyballCoach">
 		<!-- Set up constructor injection -->
-		<constructor-arg ref="myFortune" />
+		<constructor-arg ref="myFortuneService" />
+	</bean>
+	<bean id="basketballCoach"
+		class="com.frank.springdemo.BasketballCoach">
+		<!-- Set up setter injection -->
+		<property name="fortuneSvc" ref="myFortuneService" />
 	</bean>
 	<bean id="myLoggerConfig"
 		class="com.frank.springdemo.MyLoggerConfig" init-method="initLogger">
