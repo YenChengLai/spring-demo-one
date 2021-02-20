@@ -8,11 +8,19 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Define your beans here -->
+	<bean id="myFortune"
+		class="com.frank.springdemo.HappyFortuneService"></bean>
 	<bean id="myCoach" class="com.frank.springdemo.BaseballCoach">
+		<!-- Set up constructor injection -->
+		<constructor-arg ref="myFortune" />
+	</bean>
+	<bean id="volleyballCoach"
+		class="com.frank.springdemo.VolleyballCoach">
+		<!-- Set up constructor injection -->
+		<constructor-arg ref="myFortune" />
 	</bean>
 	<bean id="myLoggerConfig"
-		class="com.frank.springdemo.MyLoggerConfig"
-		init-method="initLogger">
+		class="com.frank.springdemo.MyLoggerConfig" init-method="initLogger">
 		<property name="rootLoggerLevel" value="FINE" />
 		<property name="printedLoggerLevel" value="FINE" />
 	</bean>
