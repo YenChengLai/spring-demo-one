@@ -7,6 +7,10 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- load the property file: sport.properties -->
+	<context:property-placeholder
+		location="classpath:sport.properties" />
+
 	<!-- Define your beans here -->
 	<bean id="myFortuneService"
 		class="com.frank.springdemo.HappyFortuneService"></bean>
@@ -23,10 +27,10 @@
 		class="com.frank.springdemo.BasketballCoach">
 		<!-- Set up setter injection -->
 		<property name="fortuneSvc" ref="myFortuneService" />
-		
+
 		<!-- Injecting literal values -->
-		<property name="emailAddress" value="frank@gmail.com" />
-		<property name="team" value="Team Spring" />
+		<property name="emailAddress" value="${foo.email}" />
+		<property name="team" value="${foo.team}" />
 	</bean>
 	<bean id="myLoggerConfig"
 		class="com.frank.springdemo.MyLoggerConfig" init-method="initLogger">

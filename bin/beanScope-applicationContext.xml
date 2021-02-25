@@ -7,14 +7,11 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- load the property file: sport.properties -->
-	<context:property-placeholder
-		location="classpath:sport.properties" />
-
 	<!-- Define your beans here -->
 	<bean id="myFortuneService"
 		class="com.frank.springdemo.HappyFortuneService"></bean>
-	<bean id="myCoach" class="com.frank.springdemo.BaseballCoach">
+	<bean id="myCoach" scope="prototype"
+		class="com.frank.springdemo.BaseballCoach">
 		<!-- Set up constructor injection -->
 		<constructor-arg ref="myFortuneService" />
 	</bean>
@@ -22,15 +19,6 @@
 		class="com.frank.springdemo.VolleyballCoach">
 		<!-- Set up constructor injection -->
 		<constructor-arg ref="myFortuneService" />
-	</bean>
-	<bean id="basketballCoach"
-		class="com.frank.springdemo.BasketballCoach">
-		<!-- Set up setter injection -->
-		<property name="fortuneSvc" ref="myFortuneService" />
-
-		<!-- Injecting literal values -->
-		<property name="emailAddress" value="${foo.email}" />
-		<property name="team" value="${foo.team}" />
 	</bean>
 	<bean id="myLoggerConfig"
 		class="com.frank.springdemo.MyLoggerConfig" init-method="initLogger">
